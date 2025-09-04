@@ -1,4 +1,3 @@
-
 <h1>Recherche de ressource</h1>
 
 <form method="get">
@@ -10,11 +9,15 @@
     <ul>
     {% for ressource in ressources %}
         <li>
-            <a href="{% url 'utilisateur:profil_utilisateur' user.id %}">{{ user.username }}</a>
-            {% if ressource.titre %} ({{ressource.titre}}{{ ressource.type }} {{ ressource.proprietaire.username }}){% endif %}
+            <a href="{% url 'utilisateur:profil_utilisateur' ressource.proprietaire.id %}">
+                {{ ressource.proprietaire.username }}
+            </a>
+            {% if ressource.titre %}
+                ({{ ressource.titre }} - {{ ressource.type }} - {{ ressource.proprietaire.username }})
+            {% endif %}
         </li>
     {% endfor %}
     </ul>
 {% elif query %}
-    <p>Aucun Ressources trouvé pour "{{ query }}"</p>
+    <p>Aucune ressource trouvée pour "{{ query }}"</p>
 {% endif %}

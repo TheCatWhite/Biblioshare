@@ -49,7 +49,9 @@ def recherche_ressource(request):
 
     if query:
         ressources = Ressource.objects.filter(
-            Q(titre__icontains=query) | Q(type__icontains=query) | Q(proprietaire__icontains=query)
+            Q(titre__icontains=query) |
+            Q(type__icontains=query) |
+            Q(proprietaire__username__icontains=query)
         )
 
     return render(request, 'ressource/recherche_ressource.html', {
