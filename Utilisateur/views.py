@@ -77,7 +77,7 @@ def modifier_mot_de_passe(request):
 
 
 User = get_user_model()
-
+'''
 @login_required
 def recherche_utilisateur(request):
     query = request.GET.get('q', '')
@@ -92,7 +92,7 @@ def recherche_utilisateur(request):
         'utilisateurs': utilisateurs,
         'query': query
     })
-
+'''
 @login_required
 def profil_utilisateur(request, user_id):
     utilisateur = get_object_or_404(User, id=user_id)
@@ -101,3 +101,4 @@ def profil_utilisateur(request, user_id):
         'utilisateur': utilisateur,
         'ressources': ressources
     })
+

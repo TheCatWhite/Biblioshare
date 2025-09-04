@@ -6,7 +6,7 @@
     <ul>
     {% for ressource in ressources %}
         <li>
-            <a href="{% url 'ressource:previsualiser_ressource' ressource.pk %}">{{ ressource.titre }}</a>
+            <a href="{% url 'ressource:telecharger_ressource' ressource.pk %}">{{ ressource.titre }}</a>
             ({{ ressource.type }})
         </li>
     {% endfor %}
@@ -14,3 +14,6 @@
 {% else %}
     <p>Aucune ressource partagée pour le moment.</p>
 {% endif %}
+
+
+<a href="{% url 'utilisateur:profil' %}" class="btn btn-secondary">👤 Retourner au profil</a>

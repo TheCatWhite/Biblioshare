@@ -9,7 +9,7 @@ urlpatterns = [
     path('profil/', views.profil, name='profil'),
     path("profil/modifier/", views.modifier_profil, name="modifier_profil"),
     path("profil/motdepasse/", views.modifier_mot_de_passe, name="modifier_mot_de_passe"),
-    path('recherche/', views.recherche_utilisateur, name='recherche_utilisateur'),
+#    path('recherche/', views.recherche_utilisateur, name='recherche_utilisateur'),
     path('profil/<int:user_id>/', views.profil_utilisateur, name='profil_utilisateur'),
 
 ]
