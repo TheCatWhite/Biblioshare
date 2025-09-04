@@ -1,0 +1,19 @@
+<h1>Recherche d'utilisateurs</h1>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Entrez pseudo ou nom" value="{{ query }}">
+    <button type="submit">Rechercher</button>
+</form>
+
+{% if utilisateurs %}
+    <ul>
+    {% for user in utilisateurs %}
+        <li>
+            <a href="{% url 'utilisateur:profil_utilisateur' user.id %}">{{ user.username }}</a>
+            {% if user.first_name %} ({{ user.first_name }} {{ user.last_name }}){% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% elif query %}
+    <p>Aucun utilisateur trouvé pour "{{ query }}"</p>
+{% endif %}

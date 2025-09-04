@@ -1,0 +1,13 @@
+{% extends "user/base.html" %}
+
+{% block content %}
+<h1>⬆️ Uploader une ressource</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Uploader</button>
+</form>
+
+<a href="{% url 'ressource:liste_ressources' %}">🔙 Retour à la liste des ressources</a>
+{% endblock %}

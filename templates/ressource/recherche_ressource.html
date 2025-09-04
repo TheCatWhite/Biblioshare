@@ -1,0 +1,20 @@
+
+<h1>Recherche de ressource</h1>
+
+<form method="get">
+    <input type="text" name="q" placeholder="rechercher un ressource" value="{{ query }}">
+    <button type="submit">Rechercher</button>
+</form>
+
+{% if ressources %}
+    <ul>
+    {% for ressource in ressources %}
+        <li>
+            <a href="{% url 'utilisateur:profil_utilisateur' user.id %}">{{ user.username }}</a>
+            {% if ressource.titre %} ({{ressource.titre}}{{ ressource.type }} {{ ressource.proprietaire.username }}){% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% elif query %}
+    <p>Aucun Ressources trouvé pour "{{ query }}"</p>
+{% endif %}

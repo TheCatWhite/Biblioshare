@@ -1,0 +1,16 @@
+<h1>Profil de {{ utilisateur.username }}</h1>
+{% if utilisateur.first_name %}<p>Nom complet : {{ utilisateur.first_name }} {{ utilisateur.last_name }}</p>{% endif %}
+
+<h2>Ressources partagées</h2>
+{% if ressources %}
+    <ul>
+    {% for ressource in ressources %}
+        <li>
+            <a href="{% url 'ressource:previsualiser_ressource' ressource.pk %}">{{ ressource.titre }}</a>
+            ({{ ressource.type }})
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucune ressource partagée pour le moment.</p>
+{% endif %}

@@ -1,0 +1,12 @@
+{% extends "user/base.html" %}
+{% block content %}
+<h2>Changer mon mot de passe</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Modifier</button>
+</form>
+
+<a href="{% url 'utilisateur:profil' %}">⬅ Retour au profil</a>
+{% endblock %}

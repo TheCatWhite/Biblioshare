@@ -1,0 +1,60 @@
+
+    {% extends "user/base.html" %}
+    {% block content %}
+   <title>Bienvenue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .welcome-box {
+            background-color: #fff;
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .welcome-box h1 {
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        .welcome-box p {
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            margin: 0.3rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-blue {
+            background-color: #007bff;
+        }
+        .btn-green {
+            background-color: #28a745;
+        }
+        .btn-red {
+            background-color: #dc3545;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-box">
+        <h1>Bienvenue, {{ user.username }} !</h1>
+
+
+{% endblock %}

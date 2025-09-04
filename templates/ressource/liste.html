@@ -1,0 +1,29 @@
+{% extends "user/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>📂 Toutes les ressources partagées</h1>
+
+    <!-- ✅ Boutons d'action -->
+    <div style="margin: 15px 0;">
+        <a href="{% url 'ressource:upload_ressource' %}" class="btn btn-primary">⬆️ Uploader une ressource</a>
+        <a href="{% url 'utilisateur:profil' %}" class="btn btn-secondary">👤 Retourner au profil</a>
+    </div>
+
+    <!-- ✅ Liste des ressources -->
+    {% if ressources %}
+        <ul>
+            {% for ressource in ressources %}
+                <li>
+                    <strong>{{ ressource.titre }}</strong>  
+                    ({{ ressource.get_type_display }})  
+                    par {{ ressource.proprietaire.username }}  |  
+                    <a href="{% url 'ressource:telecharger_ressource' ressource.pk %}">⬇️ Télécharger</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>🚫 Aucune ressource n’a encore été partagée.</p>
+    {% endif %}
+</div>
+{% endblock %}

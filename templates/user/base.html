@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Profil{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding-top: 70px;
+            background-color: #f4f4f9;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'utilisateur:profil' %}">Biblioshare</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'utilisateur:profil' %}">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'utilisateur:modifier_profil' %}">Modifier profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'utilisateur:recherche_utilisateur' %}">recherche</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'utilisateur:modifier_mot_de_passe' %}">Changer mot de passe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ressource:liste_ressources' %}">Ressources</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'utilisateur:deconnexion' %}">Déconnexion</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'utilisateur:connexion' %}">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'utilisateur:inscription' %}">Inscription</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Messages flash -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Contenu spécifique de la page -->
+        {% block content %}
+        {% endblock %}
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

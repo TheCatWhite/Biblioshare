@@ -1,0 +1,35 @@
+{
+  "projet": "BiblioShare",
+  "applications": {
+    "utilisateur": {
+      "role": "Gère l’authentification et les profils utilisateurs",
+      "models": [
+        "Utilisateur"
+      ],
+      "views": [
+        "inscription()",
+        "connexion()",
+        "profil_utilisateur()"
+      ]
+    },
+    "ressource": {
+      "role": "Gère les fichiers partagés, téléchargements, favoris, recherche et prévisualisation",
+      "models": [
+        "Ressource",
+        "Telechargement",
+        "Favori"
+      ],
+      "views": [
+        "ajouter_ressource()",
+        "supprimer_ressource()",
+        "liste_ressources()",
+        "recherche_ressource()", 
+        "previsualiser_ressource()",
+        "telecharger_ressource()",
+        "ajouter_favori()",
+        "supprimer_favori()",
+        "liste_favoris()"
+      ]
+    }
+  }
+}

@@ -1,0 +1,101 @@
+								Biblioshare :
+
+
+{
+  "app": "BiblioShare",
+  "description": "Plateforme open source de partage de ressources universitaires",
+  "features": {
+    "authentification": {
+      "inscription": "Par email et mot de passe",
+      "connexion": "Sécurisée avec gestion des sessions"
+    },
+    "utilisateur": {
+      "partager_ressource": "Upload de fichiers PDF, PNG, JPEG, MP3, MP4",
+      "supprimer_ressource": "Supprimer ses propres ressources",
+      "consulter_profil": "Afficher les ressources d’un utilisateur via son pseudo"
+    },
+    "catalogue": {
+      "classement": "Catégories : livre, cours, sujet, correction, tuto",
+      "filtrage": "Filtrer les ressources par type de contenu",
+      "recherche": {
+        "par_pseudo": "Recherche par nom d’utilisateur",
+        "par_mot_cle": "Recherche libre sur les titres ou descriptions"
+      },
+      "téléchargement": "Tout utilisateur peut télécharger des ressources partagées",
+      "previsualisation": "Les ressources peuvent être ouvertes directement dans l’application sans téléchargement"
+    },
+    "favoris": {
+      "statut": "Fonctionnalité à ajouter plus tard",
+      "objectif": "Permettre à l’utilisateur de sauvegarder des ressources favorites pour les retrouver facilement"
+    }
+  }
+}
+
+
+
+
+
+
+									SQL :
+
+
+
+
+-- Table des utilisateurs
+
+
+CREATE TABLE users (
+    id_user INT AUTO_INCREMENT,
+    username VARCHAR(150) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT PK_utilisateurs PRIMARY KEY (id_user)
+);
+
+-- Table des ressources
+
+
+CREATE TABLE ressources (
+    id_ressource INT AUTO_INCREMENT,
+    titre VARCHAR(255) NOT NULL,
+    fichier VARCHAR(255) NOT NULL,
+    type ENUM('cours', 'sujet', 'correction', 'tuto', 'livre') NOT NULL,
+    date_ajout DATETIME DEFAULT CURRENT_TIMESTAMP,
+    proprietaire_id INT NOT NULL,
+    CONSTRAINT PK_ressources PRIMARY KEY (id_ressource),
+    CONSTRAINT FK_ressources_utilisateur FOREIGN KEY (proprietaire_id)
+        REFERENCES users(id_user) ON DELETE CASCADE
+);
+
+-- Table des téléchargements
+
+
+CREATE TABLE telechargements (
+    id INT AUTO_INCREMENT,
+    utilisateur_id INT NOT NULL,
+    ressource_id INT NOT NULL,
+    date_telechargement DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT PK_telechargements PRIMARY KEY (id),
+    CONSTRAINT FK_telechargements_utilisateur FOREIGN KEY (utilisateur_id)
+        REFERENCES users(id_user) ON DELETE CASCADE,
+    CONSTRAINT FK_telechargements_ressource FOREIGN KEY (ressource_id)
+        REFERENCES ressources(id_ressource) ON DELETE CASCADE
+);
+
+-- Table des favoris (Otran mbola tsy aiko tsara)
+
+
+CREATE TABLE favoris (
+    id_favoris INT AUTO_INCREMENT,
+    utilisateur_id INT NOT NULL,
+    ressource_id INT NOT NULL,
+    date_ajout DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT PK_favoris PRIMARY KEY (id_favoris),
+    CONSTRAINT FK_favoris_utilisateur FOREIGN KEY (utilisateur_id)
+        REFERENCES users(id_user) ON DELETE CASCADE,
+    CONSTRAINT FK_favoris_ressource FOREIGN KEY (ressource_id)
+        REFERENCES ressources(id_ressource) ON DELETE CASCADE,
+    CONSTRAINT UC_favoris_unique UNIQUE (utilisateur_id, ressource_id)
+);
+
