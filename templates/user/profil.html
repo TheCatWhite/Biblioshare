@@ -1,60 +1,111 @@
+{% extends "user/base.html" %}
+{% block title %}Profil{% endblock %}
+{% block content %}
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    {% extends "user/base.html" %}
-    {% block content %}
-   <title>Bienvenue</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .welcome-box {
-            background-color: #fff;
-            padding: 2rem 3rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .welcome-box h1 {
-            color: #007bff;
-            margin-bottom: 1rem;
-        }
-        .welcome-box p {
-            margin-bottom: 2rem;
-            color: #555;
-        }
-        .btn {
-            display: inline-block;
-            padding: 0.7rem 1.5rem;
-            margin: 0.3rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-        }
-        .btn-blue {
-            background-color: #007bff;
-        }
-        .btn-green {
-            background-color: #28a745;
-        }
-        .btn-red {
-            background-color: #dc3545;
-        }
-        .btn:hover {
-            opacity: 0.9;
-        }
-    </style>
-</head>
-<body>
-    <div class="welcome-box">
-        <h1>Bienvenue, {{ user.username }} !</h1>
+<style>
+body { 
+  background-color: #f8f9fa; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 3cm;
+}
+.card { 
+  border-radius: 1rem; 
+  border: none;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.btn-action {
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.btn-vert {
+  display: inline-block;
+  background-color: #28a745; 
+  color: #fff; 
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+.btn-vert-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.resource-card {
+  transition: transform 0.3s;
+  height: 100%;
+}
+.resource-card:hover {
+  transform: translateY(-5px);
+}
 
+main {
+  flex: 1;
+  padding-bottom: 1rem;
+}
+</style>
+<html>
+<main class="container py-4">
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+    {% endif %}
+  <!-- Profil -->
+  <div class="card shadow p-4 mb-4">
+    <div class="d-flex align-items-center mb-4 flex-wrap">
+      <div class="avatar placeholder me-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
+        {{ user.username|first|upper }}
+      </div>
+      <div>
+        <h3 class="mb-1">{{ user.username }}</h3>
+        <p class="text-muted mb-0">Email : {{ user.email }}</p>
+        <p class="text-muted mb-0">Membre depuis : {{ user.date_joined|date:"d/m/Y H:i" }}</p>
+      </div>
+    </div>
+    
+    <div class="d-flex flex-wrap gap-3">
+      <a href="{% url 'utilisateur:modifier_profil' %}" class="btn btn-primary btn-action">
+        <i class="fas fa-user-edit me-2"></i>Modifier le profil
+      </a>
+      <a href="{% url 'utilisateur:modifier_mot_de_passe' %}" class="btn btn-outline-primary btn-action">
+        <i class="fas fa-key me-2"></i>Changer le mot de passe
+      </a>
+    </div>
+  </div>
 
+  <!-- Bouton Upload centré -->
+  <div class="btn-vert-container">
+    <a href="{% url 'ressource:upload_ressource' %}" class="btn-vert">
+      ⬆️ Uploader une ressource
+    </a>
+  </div>
+<a href="{% url 'ressource:mes_ressources_partagees' %}" class="btn btn-outline-primary">👀 Voir mes ressours partagées</a>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</html>
 {% endblock %}

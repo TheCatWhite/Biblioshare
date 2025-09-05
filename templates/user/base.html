@@ -1,89 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mon Profil{% endblock %}</title>
+  <meta charset="UTF-8">
+  <title>{% block title %}Biblioshare{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body { 
+      background-color: #f8f9fa; 
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
 
-    <style>
-        body {
-            padding-top: 70px;
-            background-color: #f4f4f9;
-        }
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .container {
-            margin-top: 20px;
-        }
-        button {
-            cursor: pointer;
-        }
-    </style>
+    .navbar-brand { font-weight: bold; font-size: 1.3rem; }
+    
+    main {
+      flex: 1;
+      padding: 2rem 1rem 5rem; /* padding-bottom pour le footer */
+    }
+
+    footer {
+      background-color: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #0477BF;
+    }
+
+    footer p { margin: 0.2rem 0; 
+    }
+  </style>
 </head>
 <body>
-
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'utilisateur:profil' %}">Biblioshare</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'utilisateur:profil' %}">Profil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'utilisateur:modifier_profil' %}">Modifier profil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'utilisateur:modifier_mot_de_passe' %}">Changer mot de passe</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'ressource:recherche_ressource' %}">Recherche ressource</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'ressource:liste_ressources' %}">Ressources</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'utilisateur:deconnexion' %}">Déconnexion</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'utilisateur:connexion' %}">Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'utilisateur:inscription' %}">Inscription</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
     <div class="container">
-        <!-- Messages flash -->
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            {% endfor %}
+      <a class="navbar-brand" href="{% url 'ressource:accueil' %}">📚 Biblioshare</a>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'ressource:accueil' %}">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'ressource:liste_ressources' %}">Ressources</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'utilisateur:aide' %}">Aide</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'utilisateur:profil' %}">Profil</a></li>
+       
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'utilisateur:deconnexion' %}">Déconnexion</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'utilisateur:connexion' %}">Connexion</a></li>
         {% endif %}
-
-        <!-- Contenu spécifique de la page -->
-        {% block content %}
-        {% endblock %}
+      </ul>
     </div>
+  </nav>
 
-   
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Contenu -->
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+<footer style="background-color:  #011526; color: #ffffffff;">
+    <p>Projet de vacances de <strong>RAMAROSON RAKOTONIRAINY Avotra Ryan</strong></p>
+    <p>Thème : <em>"L'informatique au service de l'éducation"</em></p>
+    <p>L1SIOS1</p>
+    <p>Pseudo : <strong>The CatWhite</strong></p>
+    <p>© 2025 Biblioshare - Tous droits réservés</p>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

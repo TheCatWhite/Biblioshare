@@ -1,0 +1,21 @@
+<!-- templates/aide.html -->
+{% extends "user/base.html" %}
+{% block title %}Aide | Biblioshare{% endblock %}
+{% block content %}
+<div class="card shadow p-4">
+  <h2 class="mb-4">Besoin d’aide ?</h2>
+
+  <h4>📖 Guide d’utilisation</h4>
+  <p>Vous pouvez chercher des ressources via la barre de recherche ou parcourir la liste complète.</p>
+
+  <h4 class="mt-4">❓ FAQ</h4>
+  <ul>
+    <li><strong>Comment uploader une ressource ?</strong> → Allez dans “Uploader” et remplissez le formulaire.</li>
+    <li><strong>Comment modifier mon profil ?</strong> → Dans la page profil, cliquez sur “Modifier”.</li>
+    <li><strong>Comment changer mon mot de passe ?</strong> → Dans la section profil, onglet “Changer mot de passe”.</li>
+  </ul>
+
+  <h4 class="mt-4">📩 Contact</h4>
+  <p>Pour toute question, contactez-nous à : <a href="mailto:support@biblioshare.com">support@biblioshare.com</a></p>
+</div>
+{% endblock %}

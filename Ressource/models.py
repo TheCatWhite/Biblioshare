@@ -16,7 +16,6 @@ class Ressource(models.Model):
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
     date_ajout = models.DateTimeField(auto_now_add=True)
     proprietaire = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="ressources")
-    # <-- ici, on prend le modèle utilisateur défini dans settings
 
     def __str__(self):
         return f"{self.titre} ({self.type})"

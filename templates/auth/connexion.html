@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
+    <title>Connexion - Biblioshare</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Import Google font - Poppins */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +19,7 @@
         body {
             min-height: 100vh;
             width: 100%;
-            background: #009579;
+            background-color: #0F8DBF; /* bleu lumineux */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,21 +27,22 @@
 
         .container {
             width: 420px;
-            background: #fff;
-            border-radius: 7px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            padding: 35px 30px;
         }
 
         h1 {
-            margin-bottom: 20px;
-            color: #009579;
+            margin-bottom: 25px;
+            color: #0F567F; /* bleu foncé harmonieux */
             text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         label {
             font-weight: 500;
-            color: #009579;
+            color: #0F567F;
             margin-top: 10px;
             display: block;
         }
@@ -49,29 +51,34 @@
             width: 100%;
             padding: 10px;
             font-size: 15px;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             border-radius: 6px;
             outline: none;
             margin-top: 5px;
             margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #0F567F;
+            box-shadow: 0 0 5px rgba(15,86,127,0.3);
         }
 
         button {
             color: #fff;
-            background: #009579;
+            background: #0F567F;
             width: 100%;
             padding: 12px;
             font-size: 16px;
             margin-top: 10px;
             border: none;
             border-radius: 6px;
-            outline: none;
             cursor: pointer;
-            transition: background 0.2s ease-in-out;
+            transition: 0.3s;
         }
 
         button:hover {
-            background: #006653;
+            background: #0C4163;
         }
 
         .link {
@@ -81,7 +88,7 @@
         }
 
         .link a {
-            color: #009579;
+            color: #0F567F;
             text-decoration: none;
             font-weight: 500;
         }
@@ -90,18 +97,26 @@
             text-decoration: underline;
         }
 
-        .error-messages {
+        .messages {
             margin-bottom: 15px;
         }
 
-        .error {
-            background-color: #ff4d4d;
-            color: white;
+        .messages .success {
+            background-color: #D0E9FF; /* bleu très clair */
+            color: #0F567F;
             padding: 10px;
             border-radius: 6px;
             font-size: 14px;
             text-align: center;
-            margin-bottom: 10px;
+        }
+
+        .messages .error {
+            background-color: #FFC9C9; /* rouge doux */
+            color: #841515;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
         }
     </style>
 </head>
@@ -110,15 +125,20 @@
         <h1>Connexion</h1>
 
         {% if messages %}
-        <div class="error-messages">
-            {% for message in messages %}
-            <p class="error">{{ message }}</p>
-            {% endfor %}
-        </div>
+            <div class="messages">
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="error">{{ message }}</div>
+                    {% else %}
+                        <div class="success">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         {% endif %}
 
         <form method="post" action="{% url 'utilisateur:connexion' %}">
             {% csrf_token %}
+            
             <label for="username">Identifiant ou Email</label>
             <input type="text" name="username" placeholder="Nom d'utilisateur ou email" required>
 

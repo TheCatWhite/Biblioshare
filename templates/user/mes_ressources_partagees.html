@@ -1,0 +1,38 @@
+{% extends "user/base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4 text-primary">Mes ressources partagées</h2>
+
+    {% if ressources %}
+        <div class="list-group">
+            {% for r in ressources %}
+                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center mb-2 shadow-sm rounded hover-shadow">
+                    <div>
+                        <h5 class="mb-1">{{ r.titre }}</h5>
+                        <small class="text-muted">Partagée le: {{ r.date_ajout|date:"d/m/Y H:i" }}</small>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="badge bg-primary me-3">{{ r.type }}</span>
+                        <a href="{{ r.fichier.url }}" class="btn btn-sm btn-success">
+                            <i class="fas fa-download me-1"></i>Télécharger
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            Vous n'avez encore partagé aucune ressource.
+        </div>
+    {% endif %}
+</div>
+
+<style>
+/* Hover effect pour un effet pro */
+.hover-shadow:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease-in-out;
+}
+</style>
+{% endblock %}

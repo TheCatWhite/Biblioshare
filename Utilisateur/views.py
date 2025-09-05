@@ -29,7 +29,7 @@ def connexion(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('utilisateur:profil')
+            return redirect('ressource:accueil')
         else:
             messages.error(request, "Nom d'utilisateur ou mot de passe incorrect.")
     return render(request, 'auth/connexion.html')
@@ -77,22 +77,7 @@ def modifier_mot_de_passe(request):
 
 
 User = get_user_model()
-'''
-@login_required
-def recherche_utilisateur(request):
-    query = request.GET.get('q', '')
-    utilisateurs = []
 
-    if query:
-        utilisateurs = User.objects.filter(
-            Q(username__icontains=query) | Q(first_name__icontains=query) | Q(last_name__icontains=query)
-        )
-
-    return render(request, 'user/recherche.html', {
-        'utilisateurs': utilisateurs,
-        'query': query
-    })
-'''
 @login_required
 def profil_utilisateur(request, user_id):
     utilisateur = get_object_or_404(User, id=user_id)
@@ -101,4 +86,11 @@ def profil_utilisateur(request, user_id):
         'utilisateur': utilisateur,
         'ressources': ressources
     })
+
+
+
+@login_required
+def aide(request):
+    return render(request, 'user/aide.html')
+
 

@@ -1,26 +1,40 @@
-<h1>Recherche de ressource</h1>
+{% extends "user/base.html" %}
+{% block title %}Recherche de ressource | Biblioshare{% endblock %}
+{% block content %}
 
-<form method="get">
-    <input type="text" name="q" placeholder="rechercher un ressource" value="{{ query }}">
-    <button type="submit">Rechercher</button>
-</form>
+<div class="container my-5">
+  <h1 class="text-center mb-4">🔍 Recherche de ressource</h1>
 
-{% if ressources %}
-    <ul>
-    {% for ressource in ressources %}
-        <li>
-            <a href="{% url 'utilisateur:profil_utilisateur' ressource.proprietaire.id %}">
-                {{ ressource.proprietaire.username }}
+  <!-- Barre de recherche -->
+  <form method="get" class="d-flex justify-content-center mb-4">
+    <input type="text" name="q" class="form-control w-50 me-2" placeholder="Rechercher une ressource ou un utilisateur..." value="{{ query }}">
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+  </form>
+
+  <!-- Résultats -->
+  {% if ressources %}
+    <ul class="list-group">
+      {% for ressource in ressources %}
+        <li class="list-group-item d-flex justify-content-between align-items-center shadow-sm">
+          <div>
+            <!-- Lien vers le profil -->
+            <a href="{% url 'utilisateur:profil_utilisateur' ressource.proprietaire.id %}" class="fw-bold text-decoration-none">
+              👤 {{ ressource.proprietaire.username }}
             </a>
-            {% if ressource.titre %}
-                ({{ ressource.titre }} - {{ ressource.type }} - {{ ressource.proprietaire.username }})
-            {% endif %}
+            <p class="mb-1">
+              📘 <strong>{{ ressource.titre }}</strong> <br>
+              🗂️ Type : {{ ressource.type }}
+            </p>
+            <small class="text-muted">Ajouté par {{ ressource.proprietaire.username }}</small>
+          </div>
+          <!-- Bouton Télécharger -->
+          <a href="{{ ressource.fichier.url }}" class="btn btn-outline-primary">📥 Télécharger</a>
         </li>
-    {% endfor %}
+      {% endfor %}
     </ul>
-{% elif query %}
-    <p>Aucune ressource trouvée pour "{{ query }}"</p>
-{% endif %}
+  {% elif query %}
+    <p class="text-center text-muted mt-4">Aucune ressource trouvée pour <strong>"{{ query }}"</strong>.</p>
+  {% endif %}
+</div>
 
-
-<a href="{% url 'utilisateur:profil' %}" class="btn btn-secondary">👤 Retourner au profil</a>
+{% endblock %}

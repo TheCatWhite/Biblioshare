@@ -1,13 +1,128 @@
 {% extends "user/base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
-<h1>⬆️ Uploader une ressource</h1>
+<title>Upload de Ressource | Biblioshare</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Uploader</button>
-</form>
+<style>
+    body {
+        padding-top: 70px;
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-<a href="{% url 'ressource:liste_ressources' %}">🔙 Retour à la liste des ressources</a>
+    .upload-container {
+        max-width: 800px;
+        margin: 20px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #2c3e50;
+    }
+    .page-header i {
+        font-size: 2.5rem;
+        color: #3498db;
+        margin-bottom: 15px;
+    }
+    .form-label {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 8px;
+    }
+    .form-control, .form-select {
+        padding: 12px 15px;
+        border-radius: 8px;
+        border: 1.5px solid #ddd;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.15);
+    }
+    .file-upload-container {
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        margin-bottom: 20px;
+        background-color: #f8f9fa;
+    }
+    .file-upload-container:hover {
+        border-color: #3498db;
+        background-color: #f0f8ff;
+    }
+    .file-upload-container i {
+        font-size: 3rem;
+        color: #7f8c8d;
+        margin-bottom: 15px;
+    }
+    .btn-primary {
+        background-color: #3498db;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+    .btn-primary:hover {
+        background-color: #2980b9;
+    }
+    .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .back-link:hover {
+        color: #2980b9;
+    }
+    .required-field::after {
+        content: " *";
+        color: #e74c3c;
+    }
+</style>
+
+<div class="container">
+
+    <div class="upload-container">
+        <div class="page-header">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <h2>Partagez vos ressources éducatives</h2>
+            <p class="text-muted">Ajoutez du contenu précieux à la communauté Biblioshare</p>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-4">
+                <label for="id_titre" class="form-label required-field">Titre</label>
+                {{ form.titre|add_class:"form-control" }}
+            </div>
+            <div class="mb-4">
+                <label for="id_type" class="form-label">Type de contenu</label>
+                {{ form.type|add_class:"form-select" }}
+            </div>
+            <div class="mb-4">
+                <label class="form-label required-field">Fichier</label>
+                <div class="file-upload-container">
+                    <i class="fas fa-file-upload"></i>
+                    <p>Sélectionnez un fichier</p>
+                    {{ form.fichier|add_class:"form-control" }}
+                </div>
+                <div class="form-text">Formats acceptés: PDF, JPG, PNG, MP4, DOCX, TXT (max: 10MB)</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-3">
+                <i class="fas fa-paper-plane me-2"></i>Publier la ressource
+            </button>
+        </form>
+        <a href="{% url 'ressource:liste_ressources' %}" class="back-link">
+            <i class="fas fa-arrow-left me-2"></i>Retour à la liste des ressources
+        </a>
+    </div>
+</div>
 {% endblock %}

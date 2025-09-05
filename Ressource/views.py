@@ -9,9 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.http import FileResponse
 from django.db.models import Q
+from Utilisateur.models import Utilisateur
 
-
-
+@login_required
 def liste_ressources(request):
     ressources = Ressource.objects.all().order_by("-date_ajout")
     return render(request, "ressource/liste.html", {"ressources": ressources})
@@ -58,3 +58,17 @@ def recherche_ressource(request):
         'ressources': ressources,
         'query': query,
     })
+
+
+@login_required
+def accueil(request):
+    ressources = Ressource.objects.all().order_by('-date_ajout')  
+    return render(request, 'user/accueil.html', {'ressources': ressources})
+
+@login_required
+def mes_ressources_partagees(request):
+    ressources = Ressource.objects.filter(proprietaire=request.user).order_by('-date_ajout')
+    context = {
+        'ressources': ressources
+    }
+    return render(request, 'user/mes_ressources_partagees.html', context)
