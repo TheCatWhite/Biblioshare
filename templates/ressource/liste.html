@@ -28,7 +28,11 @@
                             <p class="card-text text-muted mb-2">
                                 Ajouté le {{ r.date_ajout|date:"d/m/Y H:i" }}
                             </p>
-                            <h5 class="card-title">Par {{ r.proprietaire.username }}</h5>
+                            <h5 class="card-title">Par :
+                                <a href="{% url 'utilisateur:profil_utilisateur' r.proprietaire.id %}" class="fw-bold text-decoration-none">
+                                👤 {{ r.proprietaire.username }}
+                                </a>
+                            </h5>
                             <a href="{{ r.fichier.url }}" class="btn btn-primary mt-auto" download>
                                 <i class="fas fa-download"></i> Télécharger
                             </a>

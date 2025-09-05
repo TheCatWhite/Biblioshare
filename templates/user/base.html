@@ -47,8 +47,9 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="{% url 'ressource:accueil' %}">Accueil</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'ressource:liste_ressources' %}">Ressources</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'utilisateur:aide' %}">Aide</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'utilisateur:profil' %}">Profil</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'utilisateur:aide' %}">Aide</a></li>
+        
        
         {% if user.is_authenticated %}
           <li class="nav-item"><a class="nav-link" href="{% url 'utilisateur:deconnexion' %}">Déconnexion</a></li>
