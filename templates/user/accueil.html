@@ -5,36 +5,47 @@
   <h1 class="mb-3">Bienvenue sur Biblioshare 📚</h1>
   <p class="lead">Partagez et téléchargez des ressources facilement.</p>
 
-  <!-- Barre de recherche -->
   <form method="get" action="{% url 'ressource:recherche_ressource' %}" class="d-flex justify-content-center mt-4">
     <input type="text" name="q" class="form-control w-50 me-2" placeholder="Rechercher une ressource ou un utilisateur...">
     <button type="submit" class="btn btn-primary">Rechercher</button>
+    
   </form>
+</br>
+  <small class="text-muted">"Tu peux rechercher des ressources par mot-clé , par type ou propriétaire"</small>
 </div>
-
-<!-- Liste des ressources -->
 {% if ressources %}
 <div class="container mt-5">
-  <h3 class="mb-4">📂 Dernières ressources partagées</h3>
+  <h3 class="mb-4">📂 Les 5 Dernières ressources partagées</h3>
   <ul class="list-group">
-   
-    {% for r in ressources %}
-      <li class="list-group-item d-flex justify-content-between align-items-center">
+    
+  {% for r in ressources|slice:":5" %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
         <div>
-          <h5 class="mb-1">{{ r.titre }}</h5>
-          <p class="mb-1">Type : <strong>{{ r.type }}</strong></p>
-          <p class="mb-1">Par :<a href="{% url 'utilisateur:profil_utilisateur' r.proprietaire.id %}" class="fw-bold text-decoration-none">
-                                👤 {{ r.proprietaire.username }}
-                            </a></strong></p>
-          <small class="text-muted">Ajouté le {{ r.date_ajout|date:"d/m/Y H:i" }}</small>
+            <h5 class="mb-1">{{ r.titre }}</h5>
+            <p class="mb-1">Type : <strong>{{ r.type }}</strong></p>
+            <p class="mb-1">
+                Par :
+                <a href="{% url 'utilisateur:profil_utilisateur' r.proprietaire.id %}" class="fw-bold text-decoration-none">
+                    👤 {{ r.proprietaire.username }}
+                </a>
+            </p>
+            <small class="text-muted">Ajouté le {{ r.date_ajout|date:"d/m/Y H:i" }}</small>
         </div>
         <a href="{{ r.fichier.url }}" class="btn btn-primary">Voir</a>
-      </li>
-    {% endfor %}
-    
+    </li>
+  {% endfor %}
+   
   </ul>
 </div>
 {% else %}
 <p class="text-center mt-5">Aucune ressource disponible pour le moment.</p>
 {% endif %}
+<div class="container mt-5 text-center">
+  <h3>📤 Partage tes connaissances !</h3>
+  <p class="text-muted">Chaque ressource partagée aide la communauté à grandir 🚀</p>
+  <a href="{% url 'ressource:upload_ressource' %}" class="btn btn-success btn-lg">
+    ➕ Ajouter une ressource
+  </a>
+</div>
+
 {% endblock %}

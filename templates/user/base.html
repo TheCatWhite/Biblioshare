@@ -5,11 +5,11 @@
   <title>{% block title %}Biblioshare{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap -->
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- DaisyUI -->
+
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.css" rel="stylesheet">
-  <!-- Custom CSS -->
+
   <style>
     body { 
       background-color: #f8f9fa; 
@@ -40,7 +40,7 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="{% url 'ressource:accueil' %}">📚 Biblioshare</a>
@@ -60,12 +60,10 @@
     </div>
   </nav>
 
-  <!-- Contenu -->
   <main class="container">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- Footer -->
 <footer style="background-color:  #011526; color: #ffffffff;">
     <p>Projet de vacances de <strong>RAMAROSON RAKOTONIRAINY Avotra Ryan</strong></p>
     <p>Thème : <em>"L'informatique au service de l'éducation"</em></p>

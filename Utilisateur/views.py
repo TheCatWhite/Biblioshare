@@ -53,7 +53,7 @@ def modifier_profil(request):
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, "Profil mis à jour avec succès ✅")
+            messages.success(request, "Profil mis à jour avec succès ")
             return redirect("utilisateur:profil")
     else:
         form = CustomUserChangeForm(instance=request.user)

@@ -8,7 +8,6 @@
 
 <style>
     body {
-        padding-top: 70px;
         background-color: #f8f9fa;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
@@ -31,11 +30,6 @@
         color: #3498db;
         margin-bottom: 15px;
     }
-    .form-label {
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 8px;
-    }
     .form-control, .form-select {
         padding: 12px 15px;
         border-radius: 8px;
@@ -53,10 +47,6 @@
         margin-bottom: 20px;
         background-color: #f8f9fa;
     }
-    .file-upload-container:hover {
-        border-color: #3498db;
-        background-color: #f0f8ff;
-    }
     .file-upload-container i {
         font-size: 3rem;
         color: #7f8c8d;
@@ -73,7 +63,6 @@
         background-color: #2980b9;
     }
     .back-link {
-        display: inline-block;
         margin-top: 20px;
         color: #3498db;
         text-decoration: none;
@@ -120,7 +109,7 @@
                 <i class="fas fa-paper-plane me-2"></i>Publier la ressource
             </button>
         </form>
-        <a href="{% url 'ressource:liste_ressources' %}" class="back-link">
+        <a href="{% url 'ressource:liste_ressources' %}" class="back-link d-block">
             <i class="fas fa-arrow-left me-2"></i>Retour à la liste des ressources
         </a>
     </div>

@@ -11,9 +11,19 @@
     font-size: 0.75rem;
 }
 </style>
+<div class="container mt-5">
+  <h3 class="mb-3">🎯 Explorer par catégories</h3>
+  <div class="d-flex flex-wrap gap-2">
+    <a href="{% url 'ressource:recherche_ressource' %}?q=cours" class="btn btn-outline-secondary">📘 Cours</a>
+    <a href="{% url 'ressource:recherche_ressource' %}?q=sujet" class="btn btn-outline-secondary">📝 Sujets</a>
+    <a href="{% url 'ressource:recherche_ressource' %}?q=livre" class="btn btn-outline-secondary">🎬 Livres</a>
+    <a href="{% url 'ressource:recherche_ressource' %}?q=correction" class="btn btn-outline-secondary">🖼️ Correction</a>
+  </div>
+</div>
+
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center text-primary">Toutes les ressources</h2>
+    <h2 class="mb-4 text-center text-primary"><strong>Toutes les ressources sont aux totales : <em>{{ressources.count}}</em></strong></h2></br>
 
     {% if ressources %}
         <div class="row g-4">
@@ -23,7 +33,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ r.titre }}</h5>
                             <p class="mb-1">
-                                <span class="badge bg-info badge-type">{{ r.type }}</span>
+                                <span class="badge bg-info badge-type "style="color:red;">{{ r.type }}</span>
                             </p>
                             <p class="card-text text-muted mb-2">
                                 Ajouté le {{ r.date_ajout|date:"d/m/Y H:i" }}
@@ -47,6 +57,5 @@
 
 </div>
 
-<!-- Font Awesome pour les icônes -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 {% endblock %}

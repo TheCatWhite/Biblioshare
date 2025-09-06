@@ -72,3 +72,11 @@ def mes_ressources_partagees(request):
         'ressources': ressources
     }
     return render(request, 'user/mes_ressources_partagees.html', context)
+
+@login_required
+def mes_ressources_telechargees(request):
+    telechargements = Telechargement.objects.filter(utilisateur=request.user)
+    tel = {
+        'telechargements': telechargements
+    }
+    return render(request, 'user/mes_ressources_partagees.html', tel)

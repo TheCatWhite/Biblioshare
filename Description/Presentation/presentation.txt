@@ -1,0 +1,69 @@
+1. Introduction – Accroche (2 min)
+
+👉 Slide avec un chiffre + une image d’étudiants en classe
+
+
+Mes dames et Monsieur , chèr élèves , chèr jury , chèr assistance : Bonjour à tous et à toutes .
+
+Particulièrement je nous souhaites:
+Bienvenue et Félicitaions cher camarade à nous d' être parvenue à cette 2è année d' étude Supérieur .
+Même avec un peu de difficultés , nous sommens arrivés à ce stade et à cette instant de présentation de projet .
+Les difficultés n' étaient non seulement à cause des cours qui ne sont pas du tout facile à vrai dire ni des projets qui se sont enchainés toute l' année mais en générale j' ai remarqué que encore beaucoup d' aspect de l' éducation ne sont  pas encore informatisé et qui ne facilite pas la réussite des élèves .
+Car en effet,  
+« Saviez-vous que 60% des étudiants dans le monde rencontrent des difficultés à accéder aux ressources pédagogiques dont ils ont besoin ?
+Notament dans les pays en voie de developpement comme Madagascar , ces chiffres montent à 70%.
+Aujourd’hui, je vais vous présenter Biblioshare, une plateforme où l’informatique se met au service de l’éducation, en rendant le savoir plus accessible et plus collaboratif. »
+
+2. Contexte & Problématique (3 min)
+
+👉 Slide avec mots-clés : Accès limité – Ressources dispersées – Coût élevé – Manque de partage
+👉 Image illustrant "étudiants cherchant désespérément des cours"
+
+« La question que nous allons aborder est la suivante : comment faciliter l’accès aux ressources pédagogiques ?
+En effet, nous-mêmes – étudiants et professeurs – faisons face à de vrais problèmes :
+
+Flash-disks remplis de virus qui effacent tout ce que nous venons de partager.
+
+Perte de environ 30 minutes pour transférer un seul document entre camarades.
+
+Et pour les lycéens, notamment en 3ème ou en Terminale, la contrainte d’acheter les sujets faute de solution de partage. »
+
+3. Solution : Biblioshare (5 min)
+
+👉 Slide avec une première capture d’écran de l’accueil + 2 mots-clés en gros : Simple – Collaboratif
+
+« Biblioshare, c’est notre réponse à ce problème.
+Une plateforme collaborative où chacun peut :
+
+Rechercher rapidement des ressources grâce à des mots-clés et des filtres.
+
+Télécharger et partager facilement des documents.
+
+Avoir un profil utilisateur pour gérer et publier ses propres ressources.
+
+Et surtout, accéder à une interface simple, responsive, adaptée à tous. »
+
+(Ici tu peux montrer plusieurs captures d’écran : accueil, recherche, profil, upload)
+
+4. Impact & Bénéfices (3 min)
+
+👉 Slide : 3 colonnes avec icônes (🎓 étudiant – 👩‍🏫 enseignant – 🌍 éducation)
+👉 En arrière-plan, une image de collaboration
+
+« Avec Biblioshare, les bénéfices sont concrets :
+
+Pour les étudiants : un accès facilité aux connaissances, un vrai gain de temps, et une meilleure entraide.
+
+Pour les enseignants : une diffusion simplifiée de leurs cours et de leurs contenus pédagogiques.
+
+Et pour l’éducation en général : c’est un pas vers la démocratisation du savoir, une réduction des inégalités d’accès, et une école plus connectée, plus ouverte.
+Notre thème résume bien cela : 👉 « L’informatique au service de l’éducation. » »
+
+5. Conclusion & Appel à l’action (2 min)
+
+👉 Slide finale : grand titre + logo Biblioshare + phrase inspirante
+👉 Fond : bibliothèque numérique ou étudiants connectés
+
+« En conclusion, Biblioshare, c’est la rencontre entre la technologie et l’éducation pour un accès au savoir plus simple, plus rapide et plus collaboratif.
+Je crois qu’en partageant nos connaissances, nous créons plus d’opportunités pour tous.
+Et cela met aussi en avant  aussi une des valeurs  de l'ESMIA que je préfère : le 'Service'   ».

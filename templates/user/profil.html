@@ -1,111 +1,98 @@
 {% extends "user/base.html" %}
 {% block title %}Profil{% endblock %}
 {% block content %}
-<!-- Bootstrap -->
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Font Awesome -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
 body { 
   background-color: #f8f9fa; 
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding-bottom: 3cm;
-}
-.card { 
-  border-radius: 1rem; 
-  border: none;
 }
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   font-size: 2rem;
-  font-weight: bold;
 }
-.btn-action {
-  border-radius: 50px;
-  padding: 10px 20px;
+.card {
+  border-radius: 1rem;
+  border: none;
+}
+.card h4 {
   font-weight: 600;
-  transition: all 0.3s;
 }
-.btn-action:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-.btn-vert {
+.btn-ressources {
   display: inline-block;
-  background-color: #28a745; 
+  background-color: #0d6efd; 
   color: #fff; 
   border: none;
-  padding: 0.8rem 1.5rem;
+  padding: 0.9rem 1.6rem;
   font-weight: 600;
   border-radius: 0.5rem;
-  text-align: center;
-  text-decoration: none;
   font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }
-.btn-vert-container {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-}
-.resource-card {
-  transition: transform 0.3s;
-  height: 100%;
-}
-.resource-card:hover {
-  transform: translateY(-5px);
-}
-
-main {
-  flex: 1;
-  padding-bottom: 1rem;
+.btn-ressources:hover {
+  background-color: #084298;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 </style>
-<html>
+
 <main class="container py-4">
-    {% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    {% endfor %}
-    {% endif %}
-  <!-- Profil -->
-  <div class="card shadow p-4 mb-4">
-    <div class="d-flex align-items-center mb-4 flex-wrap">
-      <div class="avatar placeholder me-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center">
+
+
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  {% endfor %}
+  {% endif %}
+
+
+  <div class="card shadow-sm p-4 mb-4">
+    <div class="d-flex align-items-center flex-wrap">
+      <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-4">
         {{ user.username|first|upper }}
       </div>
       <div>
         <h3 class="mb-1">{{ user.username }}</h3>
-        <p class="text-muted mb-0">Email : {{ user.email }}</p>
-        <p class="text-muted mb-0">Membre depuis : {{ user.date_joined|date:"d/m/Y H:i" }}</p>
+        <p class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>{{ user.email }}</p>
+        <p class="text-muted mb-0"><i class="fas fa-calendar-alt me-2"></i>Membre depuis : {{ user.date_joined|date:"d/m/Y" }}</p>
       </div>
-    </div>
-    
-    <div class="d-flex flex-wrap gap-3">
-      <a href="{% url 'utilisateur:modifier_profil' %}" class="btn btn-primary btn-action">
-        <i class="fas fa-user-edit me-2"></i>Modifier le profil
-      </a>
-      <a href="{% url 'utilisateur:modifier_mot_de_passe' %}" class="btn btn-outline-primary btn-action">
-        <i class="fas fa-key me-2"></i>Changer le mot de passe
-      </a>
     </div>
   </div>
 
-  <!-- Bouton Upload centré -->
-  <div class="btn-vert-container">
-    <a href="{% url 'ressource:upload_ressource' %}" class="btn-vert">
-      ⬆️ Uploader une ressource
-    </a>
+  <div class="column text-center my-4">
+    <div class="col-md-4 mb-3">
+      <a href="{% url 'ressource:upload_ressource' %}" class="btn btn-success w-100 py-3 shadow-sm">
+        <i class="fas fa-upload me-2"></i> Uploader une ressource
+      </a>
+    </div>
+    <div class="col-md-4 mb-3">
+      <a href="{% url 'utilisateur:modifier_profil' %}" class="btn btn-primary w-100 py-3 shadow-sm">
+        <i class="fas fa-user-edit me-2"></i> Modifier le profil
+      </a>
+    </div>
+    <div class="col-md-4 mb-3">
+      <a href="{% url 'utilisateur:modifier_mot_de_passe' %}" class="btn btn-outline-primary w-100 py-3 shadow-sm">
+        <i class="fas fa-key me-2"></i> Changer le mot de passe
+      </a>
+    </div>
+
   </div>
-<a href="{% url 'ressource:mes_ressources_partagees' %}" class="btn btn-outline-primary">👀 Voir mes ressours partagées</a>
+ 
+    <div class="mt-4 df-center">
+      <a href="{% url 'ressource:mes_ressources_partagees' %}" class="btn-ressources">
+        👀 Voir mes ressources partagées
+      </a>
+    </div>
+  </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</html>
 {% endblock %}

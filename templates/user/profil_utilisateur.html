@@ -3,17 +3,14 @@
 {% block content %}
 
 <div class="container my-5">
-  <!-- En-tête du profil -->
+
   <div class="card shadow-lg border-0 mb-4">
     <div class="card-body text-center">
       <h1 class="card-title">👤 Profil de <strong>{{ utilisateur.username }}</strong></h1>
-      {% if utilisateur.first_name %}
-        <p class="text-muted mb-0">Nom complet : {{ utilisateur.first_name }} {{ utilisateur.last_name }}</p>
-      {% endif %}
-      <p class="text-muted">📧 {{ utilisateur.email }}</p>
+      <p class="text-muted"> <a href="mailto:{{ utilisateur.email }}" class="btn-contact">📧 {{ utilisateur.email }}</a></p>
     </div>
   </div>
-  <!-- Ressources partagées -->
+
   <h3 class="mb-3">📂 Ressources partagées</h3>
   {% if ressources %}
     <ul class="list-group">
