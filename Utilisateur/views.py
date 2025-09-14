@@ -9,12 +9,14 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 from Ressource.models import Ressource
+from django.utils.translation import gettext as _
+
 def inscription(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Compte créé avec succès ! Vous pouvez vous connecter.")
+            messages.success(request, _("Compte créé avec succès ! Vous pouvez vous connecter.")    )
             return redirect('utilisateur:connexion')
     else:
         form = CustomUserCreationForm()
@@ -31,7 +33,7 @@ def connexion(request):
             login(request, user)
             return redirect('ressource:accueil')
         else:
-            messages.error(request, "Nom d'utilisateur ou mot de passe incorrect.")
+            messages.error(request, _("Nom d'utilisateur ou mot de passe incorrect."))
     return render(request, 'auth/connexion.html')
 
 
@@ -43,7 +45,7 @@ def profil(request):
 @login_required
 def deconnexion(request):
     logout(request)
-    messages.info(request, "Vous êtes déconnecté.")
+    messages.info(request, _("Vous êtes déconnecté."))
     return redirect('utilisateur:connexion')
 
 
@@ -53,7 +55,7 @@ def modifier_profil(request):
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, "Profil mis à jour avec succès ")
+            messages.success(request, _("Profil mis à jour avec succès."))
             return redirect("utilisateur:profil")
     else:
         form = CustomUserChangeForm(instance=request.user)
@@ -94,3 +96,6 @@ def aide(request):
     return render(request, 'user/aide.html')
 
 
+@login_required
+def apropos(request):
+    return render(request, 'user/apropos.html')

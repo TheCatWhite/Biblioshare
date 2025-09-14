@@ -1,21 +1,23 @@
+
 {% extends "user/base.html" %}
-{% block title %}Accueil | Biblioshare{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Accueil | Biblioshare" %}{% endblock %}
 {% block content %}
 <div class="text-center my-5">
-  <h1 class="mb-3">Bienvenue sur Biblioshare 📚</h1>
-  <p class="lead">Partagez et téléchargez des ressources facilement.</p>
+  <h1 class="mb-3">{% trans "Bienvenue sur Biblioshare 📚" %}</h1>
+  <p class="lead">{% trans "Partagez et téléchargez des ressources facilement." %}</p>
 
   <form method="get" action="{% url 'ressource:recherche_ressource' %}" class="d-flex justify-content-center mt-4">
-    <input type="text" name="q" class="form-control w-50 me-2" placeholder="Rechercher une ressource ou un utilisateur...">
-    <button type="submit" class="btn btn-primary">Rechercher</button>
+    <input type="text" name="q" class="form-control w-50 me-2" placeholder="{% trans "Rechercher une ressource ou un utilisateur..." %}">
+    <button type="submit" class="btn btn-primary">{% trans "Rechercher" %}</button>
     
   </form>
 </br>
-  <small class="text-muted">"Tu peux rechercher des ressources par mot-clé , par type ou propriétaire"</small>
+  <small class="text-muted">{% trans "Tu peux rechercher des ressources par mot-clé , par type ou propriétaire" %}</small>
 </div>
 {% if ressources %}
 <div class="container mt-5">
-  <h3 class="mb-4">📂 Les 5 Dernières ressources partagées</h3>
+  <h3 class="mb-4">📂 {% trans "Les 5 Dernières ressources partagées" %}</h3>
   <ul class="list-group">
     
   {% for r in ressources|slice:":5" %}
@@ -24,27 +26,27 @@
             <h5 class="mb-1">{{ r.titre }}</h5>
             <p class="mb-1">Type : <strong>{{ r.type }}</strong></p>
             <p class="mb-1">
-                Par :
+                {% trans "Par :" %}
                 <a href="{% url 'utilisateur:profil_utilisateur' r.proprietaire.id %}" class="fw-bold text-decoration-none">
                     👤 {{ r.proprietaire.username }}
                 </a>
             </p>
-            <small class="text-muted">Ajouté le {{ r.date_ajout|date:"d/m/Y H:i" }}</small>
+            <small class="text-muted">{% trans "Ajouté le" %} {{ r.date_ajout|date:"d/m/Y H:i" }}</small>
         </div>
-        <a href="{{ r.fichier.url }}" class="btn btn-primary">Voir</a>
+        <a href="{{ r.fichier.url }}" class="btn btn-primary">{% trans "Voir" %}</a>
     </li>
   {% endfor %}
    
   </ul>
 </div>
 {% else %}
-<p class="text-center mt-5">Aucune ressource disponible pour le moment.</p>
+<p class="text-center mt-5">{% trans "Aucune ressource disponible pour le moment." %}</p>
 {% endif %}
 <div class="container mt-5 text-center">
-  <h3>📤 Partage tes connaissances !</h3>
-  <p class="text-muted">Chaque ressource partagée aide la communauté à grandir 🚀</p>
+  <h3>{% trans "📤 Partage tes connaissances !" %}</h3>
+  <p class="text-muted">{% trans "Chaque ressource partagée aide la communauté à grandir 🚀" %}</p>
   <a href="{% url 'ressource:upload_ressource' %}" class="btn btn-success btn-lg">
-    ➕ Ajouter une ressource
+    ➕ {% trans "Ajouter une ressource" %}
   </a>
 </div>
 

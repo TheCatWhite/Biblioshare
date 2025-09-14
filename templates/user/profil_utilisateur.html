@@ -1,17 +1,19 @@
+
 {% extends "user/base.html" %}
-{% block title %}Profil de {{ utilisateur.username }} | Biblioshare{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Profil de" %} {{ utilisateur.username }} | Biblioshare{% endblock %}
 {% block content %}
 
 <div class="container my-5">
 
   <div class="card shadow-lg border-0 mb-4">
     <div class="card-body text-center">
-      <h1 class="card-title">👤 Profil de <strong>{{ utilisateur.username }}</strong></h1>
+      <h1 class="card-title">{% trans "👤 Profil de" %} <strong>{{ utilisateur.username }}</strong></h1>
       <p class="text-muted"> <a href="mailto:{{ utilisateur.email }}" class="btn-contact">📧 {{ utilisateur.email }}</a></p>
     </div>
   </div>
 
-  <h3 class="mb-3">📂 Ressources partagées</h3>
+  <h3 class="mb-3">{% trans "📂 Ressources partagées" %}</h3>
   {% if ressources %}
     <ul class="list-group">
       {% for ressource in ressources %}
@@ -19,15 +21,15 @@
           <div>
             <h5 class="mb-1">{{ ressource.titre }}</h5>
             <p class="mb-1">🗂️ Type : {{ ressource.type }}</p>
-            <small class="text-muted">Ajouté le {{ ressource.date_ajout|date:"d/m/Y H:i" }}</small>
+            <small class="text-muted">{% trans "Ajouté le" %} {{ ressource.date_ajout|date:"d/m/Y H:i" }}</small>
           </div>
           <!-- Bouton télécharger -->
-          <a href="{% url 'ressource:telecharger_ressource' ressource.pk %}" class="btn btn-outline-primary">📥 Télécharger</a>
+          <a href="{% url 'ressource:telecharger_ressource' ressource.id%}" class="btn btn-outline-primary download">{% trans "📥 Télécharger" %}</a>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p class="text-muted">Aucune ressource partagée pour le moment.</p>
+    <p class="text-muted">{% trans "Aucune ressource partagée pour le moment." %}</p>
   {% endif %}
 </div>
 

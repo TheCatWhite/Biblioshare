@@ -1,9 +1,9 @@
 {% extends "user/base.html" %}
-{% block title %}Profil{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Profil" %}{% endblock %}
 {% block content %}
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
@@ -13,13 +13,19 @@ body {
 .avatar {
   width: 100px;
   height: 100px;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  color: white;
 }
 .card {
   border-radius: 1rem;
   border: none;
 }
-.card h4 {
+.card h3 {
   font-weight: 600;
 }
 .btn-ressources {
@@ -40,10 +46,19 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
+.language-btn {
+  min-width: 100px;
+}
+.action-btn {
+  transition: all 0.2s ease-in-out;
+}
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 </style>
 
-<main class="container py-4">
-
+<main class="container py-5">
 
   {% if messages %}
   {% for message in messages %}
@@ -54,45 +69,64 @@ body {
   {% endfor %}
   {% endif %}
 
-
-  <div class="card shadow-sm p-4 mb-4">
-    <div class="d-flex align-items-center flex-wrap">
-      <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-4">
+  <!-- Card profil -->
+  <div class="card shadow-sm p-4 mb-5">
+    <div class="d-flex flex-column flex-md-row align-items-center">
+      <!-- Avatar -->
+      <div class="avatar me-4 mb-3 mb-md-0">
         {{ user.username|first|upper }}
       </div>
-      <div>
-        <h3 class="mb-1">{{ user.username }}</h3>
+      <!-- Infos utilisateur -->
+      <div class="flex-grow-1">
+        <h3>{{ user.username }}</h3>
         <p class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>{{ user.email }}</p>
-        <p class="text-muted mb-0"><i class="fas fa-calendar-alt me-2"></i>Membre depuis : {{ user.date_joined|date:"d/m/Y" }}</p>
+        <p class="text-muted mb-0"><i class="fas fa-calendar-alt me-2"></i>{% trans "Membre depuis :" %} {{ user.date_joined|date:"d/m/Y" }}</p>
+      </div>
+      <!-- Choix de langue -->
+      <div class="d-flex mt-3 mt-md-0 ms-md-3">
+        <form action="{% url 'set_language' %}" method="post" class="me-2">
+          {% csrf_token %}
+          <input type="hidden" name="language" value="fr">
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <button type="submit" class="btn btn-outline-primary btn-sm language-btn">🇫🇷 Français</button>
+        </form>
+        <form action="{% url 'set_language' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="language" value="en">
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <button type="submit" class="btn btn-outline-primary btn-sm language-btn">🇬🇧 English</button>
+        </form>
       </div>
     </div>
   </div>
 
-  <div class="column text-center my-4">
-    <div class="col-md-4 mb-3">
-      <a href="{% url 'ressource:upload_ressource' %}" class="btn btn-success w-100 py-3 shadow-sm">
-        <i class="fas fa-upload me-2"></i> Uploader une ressource
+  <!-- Actions principales -->
+  <div class="row g-3 mb-5 text-center">
+    <div class="col-md-4">
+      <a href="{% url 'ressource:upload_ressource' %}" class="btn btn-success w-100 py-3 action-btn">
+        <i class="fas fa-upload me-2"></i>{% trans "Uploader une ressource" %}
       </a>
     </div>
-    <div class="col-md-4 mb-3">
-      <a href="{% url 'utilisateur:modifier_profil' %}" class="btn btn-primary w-100 py-3 shadow-sm">
-        <i class="fas fa-user-edit me-2"></i> Modifier le profil
+    <div class="col-md-4">
+      <a href="{% url 'utilisateur:modifier_profil' %}" class="btn btn-primary w-100 py-3 action-btn">
+        <i class="fas fa-user-edit me-2"></i>{% trans "Modifier le profil" %}
       </a>
     </div>
-    <div class="col-md-4 mb-3">
-      <a href="{% url 'utilisateur:modifier_mot_de_passe' %}" class="btn btn-outline-primary w-100 py-3 shadow-sm">
-        <i class="fas fa-key me-2"></i> Changer le mot de passe
+    <div class="col-md-4">
+      <a href="{% url 'utilisateur:modifier_mot_de_passe' %}" class="btn btn-outline-primary w-100 py-3 action-btn">
+        <i class="fas fa-key me-2"></i>{% trans "Changer le mot de passe" %}
       </a>
     </div>
+  </div>
 
+  <!-- Voir ressources partagées -->
+  <div class="text-center">
+    <a href="{% url 'ressource:mes_ressources_partagees' %}" class="btn-ressources">
+      👀 {% trans "Voir mes ressources partagées" %}
+    </a>
   </div>
- 
-    <div class="mt-4 df-center">
-      <a href="{% url 'ressource:mes_ressources_partagees' %}" class="btn-ressources">
-        👀 Voir mes ressources partagées
-      </a>
-    </div>
-  </div>
+
 </main>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}

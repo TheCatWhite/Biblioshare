@@ -1,0 +1,191 @@
+{% extends "user/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}À propos - Biblioshare{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  <!-- Titre principal -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold display-5">
+      {% trans "À propos de" %} <span class="text-primary">Biblioshare</span>
+    </h1>
+    <p class="lead fst-italic">« {% trans "L'informatique au service de l'éducation" %} »</p>
+    <div class="alert alert-info shadow-sm mt-4">
+      <p class="mb-0">{% trans "Saviez-vous que 60% des étudiants dans le monde rencontrent des difficultés à accéder aux ressources pédagogiques dont ils ont besoin ? À Madagascar, ce chiffre monte à 70%." %}</p>
+    </div>
+  </div>
+
+  <!-- Problématique -->
+  <div class="card shadow-sm border-0 mb-5">
+    <div class="card-body">
+      <h2 class="fw-bold mb-4 text-center text-primary">{% trans "Le problème que nous résolvons" %}</h2>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-times-circle text-danger me-2"></i> {% trans "Accès limité aux ressources pédagogiques" %}</li>
+            <li class="list-group-item"><i class="fas fa-times-circle text-danger me-2"></i> {% trans "Ressources dispersées et difficiles à trouver" %}</li>
+            <li class="list-group-item"><i class="fas fa-times-circle text-danger me-2"></i> {% trans "Coût élevé des supports pédagogiques" %}</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-times-circle text-danger me-2"></i> {% trans "Manque de partage structuré entre étudiants" %}</li>
+            <li class="list-group-item"><i class="fas fa-times-circle text-danger me-2"></i> {% trans "Perte de temps dans les échanges (30 min par document)" %}</li>
+            <li class="list-group-item"><i class="fas fa-times-circle text-danger me-2"></i> {% trans "Problèmes techniques (clés USB infectées, etc.)" %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Présentation -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <h2 class="fw-bold mb-3 text-primary">{% trans "Présentation" %}</h2>
+      <p>
+        {% trans "Je m'appelle" %} <strong>RAMAROSON RAKOTONIRAINY Avotra Ryan</strong>.  
+        {% trans "J'ai réalisé ce projet dans le cadre d'un projet de vacances en L1." %}  
+        {% trans "Aujourd'hui, je suis en L2 SIO à l'ESMIA." %}
+      </p>
+      <p>
+        <strong>Biblioshare</strong> {% trans "est une plateforme que j'ai développée pour répondre à un problème concret que nous rencontrons tous : le difficile accès aux ressources pédagogiques. C'est une solution collaborative où le partage de connaissances devient simple, rapide et efficace." %}
+      </p>
+      <p class="fw-semibold text-muted">
+        {% trans "Notre devise :" %} <em>« {% trans "En partageant nos connaissances, nous créons plus d'opportunités pour tous" %} »</em>
+      </p>
+    </div>
+    <div class="col-md-6 d-flex flex-column align-items-center text-center">
+      <img src="{% static 'images/486755684_1897157287772427_1180096374266891073_n.jpg' %}" alt="Photo de Ryan" class="profile-pic mb-3">
+      <h5 class="fw-bold mb-0">Avotra Ryan</h5>
+      <p class="text-muted">{% trans "Étudiant en L2 SIO - ESMIA" %}</p>
+    </div>
+  </div>
+
+  <!-- Solution -->
+  <div class="bg-primary bg-opacity-10 p-5 rounded shadow-sm mb-5">
+    <h2 class="fw-bold mb-4 text-center">{% trans "Notre solution : Biblioshare" %}</h2>
+    <div class="row text-center">
+      <div class="col-md-4 d-flex flex-column align-items-center mb-4">
+        <img src="{% static 'images/recherchelivre.jpg' %}" alt="recherche de livre" class="feature-icon mb-3">
+        <h5 class="fw-bold">{% trans "Recherche avancée" %}</h5>
+        <p>{% trans "Trouvez rapidement des ressources grâce aux mots-clés et filtres intuitifs." %}</p>
+      </div>
+      <div class="col-md-4 d-flex flex-column align-items-center mb-4">
+        <img src="{% static 'images/partage.jpeg' %}" alt="partage" class="feature-icon mb-3">
+        <h5 class="fw-bold">{% trans "Partage simplifié" %}</h5>
+        <p>{% trans "Téléchargez et partagez facilement des documents pédagogiques." %}</p>
+      </div>
+      <div class="col-md-4 d-flex flex-column align-items-center mb-4">
+        <img src="{% static 'images/profil.jpg' %}" alt="profil personnel" class="feature-icon mb-3">
+        <h5 class="fw-bold">{% trans "Profil personnel" %}</h5>
+        <p>{% trans "Gérez et publiez vos propres ressources avec une interface intuitive." %}</p>
+      </div>
+    </div>
+    <p class="fw-bold text-center text-muted mt-4">{% trans "Une interface simple, responsive et adaptée à tous les utilisateurs" %}</p>
+  </div>
+
+  <!-- Impact -->
+  <div class="mb-5">
+    <h2 class="fw-bold mb-4 text-center text-primary">{% trans "Impact et bénéfices" %}</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100 text-center p-4 d-flex flex-column align-items-center">
+          <i class="fas fa-graduation-cap fa-3x text-info mb-3"></i>
+          <h5>{% trans "Pour les étudiants" %}</h5>
+          <p>{% trans "Accès facilité aux connaissances, gain de temps significatif et meilleure entraide entre camarades." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100 text-center p-4 d-flex flex-column align-items-center">
+          <i class="fas fa-chalkboard-teacher fa-3x text-success mb-3"></i>
+          <h5>{% trans "Pour les enseignants" %}</h5>
+          <p>{% trans "Diffusion simplifiée des cours et contenus pédagogiques, meilleure interaction avec les étudiants." %}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100 text-center p-4 d-flex flex-column align-items-center">
+          <i class="fas fa-globe-africa fa-3x text-warning mb-3"></i>
+          <h5>{% trans "Pour l'éducation" %}</h5>
+          <p>{% trans "Démocratisation du savoir, réduction des inégalités d'accès, école plus connectée et ouverte." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stack -->
+  <div class="mb-5">
+    <h2 class="fw-bold mb-4 text-center text-primary">{% trans "Stack technique" %}</h2>
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="progress-stack">
+          <div class="d-flex justify-content-between mb-1"><span>Django (Backend)</span><span>35%</span></div>
+          <div class="progress mb-3"><div class="progress-bar bg-success" style="width:35%"></div></div>
+
+          <div class="d-flex justify-content-between mb-1"><span>HTML & CSS</span><span>40%</span></div>
+          <div class="progress mb-3"><div class="progress-bar bg-info" style="width:40%"></div></div>
+
+          <div class="d-flex justify-content-between mb-1"><span>Bootstrap & Daisy UI</span><span>10%</span></div>
+          <div class="progress mb-3"><div class="progress-bar bg-warning" style="width:10%"></div></div>
+
+          <div class="d-flex justify-content-between mb-1"><span>JavaScript</span><span>5%</span></div>
+          <div class="progress mb-3"><div class="progress-bar bg-danger" style="width:5%"></div></div>
+
+          <div class="d-flex justify-content-between mb-1"><span>Font Awesome & Google Fonts</span><span>10%</span></div>
+          <div class="progress mb-3"><div class="progress-bar bg-primary" style="width:10%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Encadrants -->
+  <div class="mb-5">
+    <h2 class="fw-bold mb-4 text-center text-primary">{% trans "Encadrants" %}</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4 d-flex flex-column align-items-center text-center">
+        <img src="{% static 'images/tojo.jpg' %}" alt="Chef de parcours" class="profile-pic mb-3">
+        <p class="fw-semibold mb-0">Mr RANDRIAMPARAZATO</p>
+        <small class="text-muted">{% trans "Chef de parcours SIO et enseignant-formateur à l' ESMIA" %}</small>
+      </div>
+      <div class="col-md-4 d-flex flex-column align-items-center text-center">
+        <img src="{% static 'images/fabrice.jpg' %}" alt="Responsable de projet" class="profile-pic mb-3">
+        <p class="fw-semibold mb-0">Mr RAZAFINDRABE</p>
+        <small class="text-muted">{% trans "Responsable de projet SIO , enseignant-chercheur et formateur à l' ESMIA" %}</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: 4px solid #0d6efd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+  .profile-pic:hover {
+    transform: scale(1.05);
+  }
+  .feature-icon {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  }
+  .progress {
+    height: 18px;
+    border-radius: 10px;
+  }
+  .progress-bar {
+    border-radius: 10px;
+  }
+</style>
+{% endblock %}

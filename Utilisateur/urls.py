@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from Utilisateur import views
+from django.conf.urls.static import static
 app_name = "utilisateur"
 urlpatterns = [
     path('',views.inscription, name='inscription'),
@@ -13,6 +14,7 @@ urlpatterns = [
 #    path('recherche/', views.recherche_utilisateur, name='recherche_utilisateur'),
     path('profil/<int:user_id>/', views.profil_utilisateur, name='profil_utilisateur'),
     path("aide/", views.aide, name="aide"),
+    path("apropos/", views.apropos, name="apropos"),
     
 
 ]

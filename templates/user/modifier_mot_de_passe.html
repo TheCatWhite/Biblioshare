@@ -1,22 +1,24 @@
+
 {% extends "user/base.html" %}
+{% load i18n %}
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h2 class="card-title mb-4 text-center">Changer mon mot de passe</h2>
+                    <h2 class="card-title mb-4 text-center">{% trans "Changer mon mot de passe" %}</h2>
 
                     <form method="post">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div class="d-grid gap-2 mt-3">
-                            <button type="submit" class="btn btn-primary btn-block">Modifier</button>
+                            <button type="submit" class="btn btn-primary btn-block">{% trans "Modifier" %}</button>
                         </div>
                     </form>
 
                     <div class="text-center mt-3">
-                        <a href="{% url 'utilisateur:profil' %}" class="text-decoration-none">⬅ Retour au profil</a>
+                        <a href="{% url 'utilisateur:profil' %}" class="text-decoration-none">⬅ {% trans "Retour au profil" %}</a>
                     </div>
                 </div>
             </div>

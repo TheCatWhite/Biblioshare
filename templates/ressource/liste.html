@@ -1,29 +1,108 @@
+
 {% extends "user/base.html" %}
+{% load i18n %}
 {% block content %}
 <style>
-.card-hover:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+/* Effet hover sur les cartes */
+.card-hover {
     transition: all 0.3s ease-in-out;
+    border-radius: 0.8rem;
+    overflow: hidden;
 }
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Badge type */
 .badge-type {
     text-transform: uppercase;
     font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35em 0.6em;
+    border-radius: 0.5rem;
+}
+
+/* Couleur des badges selon le type */
+.badge.bg-info {
+    background-color: #0dcaf0 !important; /* bleu clair */
+    color: #fff !important;
+}
+
+.badge.bg-success {
+    background-color: #198754 !important; /* vert */
+    color: #fff !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important; /* jaune */
+    color: #212529 !important;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important; /* rouge */
+    color: #fff !important;
+}
+
+/* Texte et lien */
+.card-title a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.card-title a:hover {
+    text-decoration: underline;
+}
+
+/* Boutons */
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    border-color: var(--btn-primary-bg);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-primary-hover);
+    border-color: var(--btn-primary-hover);
+}
+
+/* Conteneur des boutons catégories */
+.d-flex.flex-wrap.gap-2 a.btn {
+    transition: all 0.2s ease-in-out;
+}
+
+.d-flex.flex-wrap.gap-2 a.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Adaptation mode sombre */
+[data-theme="dark"] .card {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .badge.bg-info {
+    background-color: #0dcaf0 !important;
+    color: #000 !important;
 }
 </style>
+
+</style>
 <div class="container mt-5">
-  <h3 class="mb-3">🎯 Explorer par catégories</h3>
+  <h3 class="mb-3">{% trans "🎯 Explorer par catégories" %}</h3>
   <div class="d-flex flex-wrap gap-2">
-    <a href="{% url 'ressource:recherche_ressource' %}?q=cours" class="btn btn-outline-secondary">📘 Cours</a>
-    <a href="{% url 'ressource:recherche_ressource' %}?q=sujet" class="btn btn-outline-secondary">📝 Sujets</a>
-    <a href="{% url 'ressource:recherche_ressource' %}?q=livre" class="btn btn-outline-secondary">🎬 Livres</a>
-    <a href="{% url 'ressource:recherche_ressource' %}?q=correction" class="btn btn-outline-secondary">🖼️ Correction</a>
+    <a href="{% url 'ressource:recherche_ressource' %}?q=cours" class="btn btn-outline-secondary">{% trans "📘 Cours" %}</a>
+    <a href="{% url 'ressource:recherche_ressource' %}?q=sujet" class="btn btn-outline-secondary">{% trans "📝 Sujets" %}</a>
+    <a href="{% url 'ressource:recherche_ressource' %}?q=livre" class="btn btn-outline-secondary">{% trans "🎬 Livres" %}</a>
+    <a href="{% url 'ressource:recherche_ressource' %}?q=correction" class="btn btn-outline-secondary">{% trans "🖼️ Correction" %}</a>
   </div>
 </div>
 
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center text-primary"><strong>Toutes les ressources sont aux totales : <em>{{ressources.count}}</em></strong></h2></br>
+    <h2 class="mb-4 text-center text-primary"><strong>{% trans "Toutes les ressources sont aux totales :" %} <em>{{ressources.count}}</em></strong></h2></br>
 
     {% if ressources %}
         <div class="row g-4">
@@ -36,15 +115,15 @@
                                 <span class="badge bg-info badge-type "style="color:red;">{{ r.type }}</span>
                             </p>
                             <p class="card-text text-muted mb-2">
-                                Ajouté le {{ r.date_ajout|date:"d/m/Y H:i" }}
+                                {% trans "Ajouté le" %} {{ r.date_ajout|date:"d/m/Y H:i" }}
                             </p>
-                            <h5 class="card-title">Par :
+                            <h5 class="card-title">{% trans "Par " %}:
                                 <a href="{% url 'utilisateur:profil_utilisateur' r.proprietaire.id %}" class="fw-bold text-decoration-none">
                                 👤 {{ r.proprietaire.username }}
                                 </a>
                             </h5>
-                            <a href="{{ r.fichier.url }}" class="btn btn-primary mt-auto" download>
-                                <i class="fas fa-download"></i> Télécharger
+                            <a href="{% url 'ressource:telecharger_ressource' r.id%}" class="btn btn-primary mt-auto" download>
+                                <i class="fas fa-download"></i> {% trans "Télécharger" %}
                             </a>
                         </div>
                     </div>
@@ -52,7 +131,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <p class="text-center text-muted">Vous n'avez encore partagé aucune ressource.</p>
+        <p class="text-center text-muted">{% trans "Vous n'avez encore partagé aucune ressource." %}</p>
     {% endif %}
 
 </div>

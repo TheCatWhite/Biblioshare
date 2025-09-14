@@ -1,0 +1,39 @@
+
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="card shadow-lg border-0 rounded-4 p-5 text-center" style="max-width: 500px; width: 100%;">
+        
+        <h4 class="fw-bold text-danger mb-4">
+           {% trans "⚠️ Confirmation de suppression" %}
+        </h4>
+
+        <p class="fs-5 mb-4">
+            {% trans "Voulez-vous vraiment supprimer la ressource :" %} <br>
+            <span class="fw-semibold text-success">« {{ ressource.titre }} »</span> ?
+        </p>
+
+        <form action="" method="POST" class="mt-3">
+            {% csrf_token %}
+            <div class="d-flex justify-content-center gap-3">
+                <button type="submit" class="btn btn-danger px-4 rounded-pill shadow-sm">
+                    <i class="fas fa-trash-alt me-1"></i> {% trans "Supprimer" %}
+                </button>
+                <a href="{% url 'ressource:mes_ressources_partagees' %}" class="btn btn-secondary px-4 rounded-pill shadow-sm">
+                    {% trans "Annuler" %}
+                </a>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<style>
+/* Ajout d’un léger effet hover */
+.btn:hover {
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+}
+</style>
+{% endblock %}

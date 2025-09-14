@@ -1,8 +1,10 @@
+
 {% extends "user/base.html" %}
+{% load i18n %}
 {% load widget_tweaks %}
 
 {% block content %}
-<title>Upload de Ressource | Biblioshare</title>
+<title>{% trans "Upload de Ressource | Biblioshare" %}</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -82,35 +84,35 @@
     <div class="upload-container">
         <div class="page-header">
             <i class="fas fa-cloud-upload-alt"></i>
-            <h2>Partagez vos ressources éducatives</h2>
-            <p class="text-muted">Ajoutez du contenu précieux à la communauté Biblioshare</p>
+            <h2>{% trans "Partagez vos ressources éducatives" %}</h2>
+            <p class="text-muted">{% trans "Ajoutez du contenu précieux à la communauté Biblioshare" %}</p>
         </div>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="mb-4">
-                <label for="id_titre" class="form-label required-field">Titre</label>
+                <label for="id_titre" class="form-label required-field">{% trans "Titre" %}</label>
                 {{ form.titre|add_class:"form-control" }}
             </div>
             <div class="mb-4">
-                <label for="id_type" class="form-label">Type de contenu</label>
+                <label for="id_type" class="form-label">{% trans "Type de contenu" %}</label>
                 {{ form.type|add_class:"form-select" }}
             </div>
             <div class="mb-4">
-                <label class="form-label required-field">Fichier</label>
+                <label class="form-label required-field">{% trans "Fichier" %}</label>
                 <div class="file-upload-container">
                     <i class="fas fa-file-upload"></i>
-                    <p>Sélectionnez un fichier</p>
+                    <p>{% trans "Sélectionnez un fichier" %}</p>
                     {{ form.fichier|add_class:"form-control" }}
                 </div>
-                <div class="form-text">Formats acceptés: PDF, JPG, PNG, MP4, DOCX, TXT (max: 10MB)</div>
+                <div class="form-text">{% trans "Formats acceptés: PDF, JPG, PNG, MP4, DOCX, TXT (max: 10MB)" %}</div>
             </div>
             <button type="submit" class="btn btn-primary w-100 py-3">
-                <i class="fas fa-paper-plane me-2"></i>Publier la ressource
+                <i class="fas fa-paper-plane me-2"></i>{% trans "Publier la ressource" %}
             </button>
         </form>
         <a href="{% url 'ressource:liste_ressources' %}" class="back-link d-block">
-            <i class="fas fa-arrow-left me-2"></i>Retour à la liste des ressources
+            <i class="fas fa-arrow-left me-2"></i>{% trans "Retour à la liste des ressources" %}
         </a>
     </div>
 </div>

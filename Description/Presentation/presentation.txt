@@ -12,9 +12,9 @@ Les difficultés n' étaient non seulement à cause des cours qui ne sont pas du
 Car en effet,  
 « Saviez-vous que 60% des étudiants dans le monde rencontrent des difficultés à accéder aux ressources pédagogiques dont ils ont besoin ?
 Notament dans les pays en voie de developpement comme Madagascar , ces chiffres montent à 70%.
-Aujourd’hui, je vais vous présenter Biblioshare, une plateforme où l’informatique se met au service de l’éducation, en rendant le savoir plus accessible et plus collaboratif. »
+ Aujourd’hui, je vais vous présenter Biblioshare, une plateforme où l’informatique se met au service de l’éducation, en rendant le savoir plus accessible et plus collaboratif. »
 
-2. Contexte & Problématique (3 min)
+
 
 👉 Slide avec mots-clés : Accès limité – Ressources dispersées – Coût élevé – Manque de partage
 👉 Image illustrant "étudiants cherchant désespérément des cours"
@@ -22,17 +22,21 @@ Aujourd’hui, je vais vous présenter Biblioshare, une plateforme où l’infor
 « La question que nous allons aborder est la suivante : comment faciliter l’accès aux ressources pédagogiques ?
 En effet, nous-mêmes – étudiants et professeurs – faisons face à de vrais problèmes :
 
-Flash-disks remplis de virus qui effacent tout ce que nous venons de partager.
+Par exemple : pour transférer un seul document entre camarades  on pert   environ 30 minutes.
+Sans parler des Flash-disks remplis de virus qui effacent tout ce que nous venons de partager.
 
-Perte de environ 30 minutes pour transférer un seul document entre camarades.
+Et aussi pour les lycéens, notamment en 3ème ou en Terminale, la contrainte d’acheter les sujets d'examen pour s' entrainer faute de solution de partage. »
 
-Et pour les lycéens, notamment en 3ème ou en Terminale, la contrainte d’acheter les sujets faute de solution de partage. »
+
+
 
 3. Solution : Biblioshare (5 min)
 
 👉 Slide avec une première capture d’écran de l’accueil + 2 mots-clés en gros : Simple – Collaboratif
 
-« Biblioshare, c’est notre réponse à ce problème.
+
+
+Ainsi ,« Biblioshare, c’est notre réponse à ce problème.
 Une plateforme collaborative où chacun peut :
 
 Rechercher rapidement des ressources grâce à des mots-clés et des filtres.
@@ -50,6 +54,9 @@ Et surtout, accéder à une interface simple, responsive, adaptée à tous. »
 👉 Slide : 3 colonnes avec icônes (🎓 étudiant – 👩‍🏫 enseignant – 🌍 éducation)
 👉 En arrière-plan, une image de collaboration
 
+
+
+
 « Avec Biblioshare, les bénéfices sont concrets :
 
 Pour les étudiants : un accès facilité aux connaissances, un vrai gain de temps, et une meilleure entraide.
@@ -59,10 +66,17 @@ Pour les enseignants : une diffusion simplifiée de leurs cours et de leurs cont
 Et pour l’éducation en général : c’est un pas vers la démocratisation du savoir, une réduction des inégalités d’accès, et une école plus connectée, plus ouverte.
 Notre thème résume bien cela : 👉 « L’informatique au service de l’éducation. » »
 
+
+
+
 5. Conclusion & Appel à l’action (2 min)
 
 👉 Slide finale : grand titre + logo Biblioshare + phrase inspirante
 👉 Fond : bibliothèque numérique ou étudiants connectés
+
+
+
+
 
 « En conclusion, Biblioshare, c’est la rencontre entre la technologie et l’éducation pour un accès au savoir plus simple, plus rapide et plus collaboratif.
 Je crois qu’en partageant nos connaissances, nous créons plus d’opportunités pour tous.

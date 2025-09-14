@@ -1,13 +1,15 @@
+
 {% extends "user/base.html" %}
-{% block title %}Recherche de ressource | Biblioshare{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Recherche de ressource | Biblioshare" %}{% endblock %}
 {% block content %}
 
 <div class="container my-5">
-  <h1 class="text-center mb-4">🔍 Recherche de ressource</h1>
+  <h1 class="text-center mb-4">{% trans "🔍 Recherche de ressource" %}</h1>
 
   <form method="get" class="d-flex justify-content-center mb-4">
-    <input type="text" name="q" class="form-control w-50 me-2" placeholder="Rechercher une ressource ou un utilisateur..." value="{{ query }}">
-    <button type="submit" class="btn btn-primary">Rechercher</button>
+    <input type="text" name="q" class="form-control w-50 me-2" placeholder="{% trans "Rechercher une ressource ou un utilisateur..." %}" value="{{ query }}">
+    <button type="submit" class="btn btn-primary">{% trans "Rechercher" %}</button>
   </form>
 
 
@@ -26,13 +28,13 @@
             </p>
             
           </div>
-         
-          <a href="{{ ressource.fichier.url }}" class="btn btn-outline-primary">📥 Télécharger</a>
+
+          <a href="{{ ressource.fichier.url }}" class="btn btn-outline-primary">📥 {% trans "Télécharger" %}</a>
         </li>
       {% endfor %}
     </ul>
   {% elif query %}
-    <p class="text-center text-muted mt-4">Aucune ressource trouvée pour <strong>"{{ query }}"</strong>.</p>
+    <p class="text-center text-muted mt-4">{% trans "Aucune ressource trouvée pour" %} <strong>"{{ query }}"</strong>.</p>
   {% endif %}
 </div>
 

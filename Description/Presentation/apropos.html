@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}À propos - Biblioshare{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  <!-- Titre -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">{% trans "À propos de" %} <span class="text-primary">Biblioshare</span></h1>
+    <p class="text-muted">« {% trans "L’informatique au service de l’éducation" %} »</p>
+  </div>
+
+  <!-- Présentation -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <h2 class="fw-bold mb-3">{% trans "Présentation" %}</h2>
+      <p>
+        {% trans "Je m'appelle" %} <strong>RAMAROSON RAKOTONIRAINY Avotra Ryan</strong>.  
+        {% trans "J’ai réalisé ce projet dans le cadre d’un projet de vacances en L1." %}  
+        {% trans "Aujourd’hui, je suis en L2 SIO." %}
+      </p>
+      <p>
+        <strong>Biblioshare</strong> {% trans "est une plateforme que j’ai développée pour rendre le partage de ressources pédagogiques plus simple, rapide et collaboratif." %}
+      </p>
+    </div>
+    <div class="col-md-6 text-center">
+      <img src="{% static 'images/ryan.jpg' %}" alt="Photo de Ryan" class="profile-pic">
+      <p class="mt-2 fw-bold">Avotra Ryan</p>
+    </div>
+  </div>
+
+  <!-- Stack technique -->
+  <div class="mb-5">
+    <h2 class="fw-bold mb-3">{% trans "Stack technique" %}</h2>
+    <ul>
+      <li><strong>Django (Backend)</strong> – 35%</li>
+      <li><strong>HTML & CSS</strong> – 40%</li>
+      <li><strong>Bootstrap & Daisy UI</strong> – 10%</li>
+      <li><strong>JavaScript</strong> – 5%</li>
+      <li><strong>Font Awesome & Google Fonts</strong> – 10%</li>
+    </ul>
+  </div>
+
+  <!-- Encadrants -->
+  <div class="mb-5">
+    <h2 class="fw-bold mb-4">{% trans "Encadrants" %}</h2>
+    <div class="row text-center">
+      <div class="col-md-6 mb-4">
+        <img src="{% static 'images/prof1.jpg' %}" alt="Responsable de parcours" class="profile-pic">
+        <p class="mt-2"><strong>Mr RANDRIAMPARAZATO</strong><br>{% trans "Responsable de parcours" %}</p>
+      </div>
+      <div class="col-md-6 mb-4">
+        <img src="{% static 'images/prof2.jpg' %}" alt="Responsable de projet" class="profile-pic">
+        <p class="mt-2"><strong>Mr RAZAFINDRABE</strong><br>{% trans "Responsable de projet" %}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--btn-primary-bg);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+</style>
+{% endblock %}
+

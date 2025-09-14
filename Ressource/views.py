@@ -31,15 +31,14 @@ def upload_ressource(request):
         form = RessourceForm()
     return render(request, "ressource/upload.html", {"form": form})
 
+
+
 @login_required
 def telecharger_ressource(request, pk):
     ressource = get_object_or_404(Ressource, pk=pk)
-    Telechargement.objects.create(utilisateur=request.user, ressource=ressource)
+    Telechargement.objects.create(proprietaire=request.user, ressource=ressource)
     response = FileResponse(ressource.fichier.open('rb'), as_attachment=True, filename=ressource.fichier.name.split('/')[-1])
     return response
-
-
-
 
 
 @login_required
@@ -65,18 +64,27 @@ def accueil(request):
     ressources = Ressource.objects.all().order_by('-date_ajout')  
     return render(request, 'user/accueil.html', {'ressources': ressources})
 
+
+
+
 @login_required
 def mes_ressources_partagees(request):
     ressources = Ressource.objects.filter(proprietaire=request.user).order_by('-date_ajout')
+    telechargements = Telechargement.objects.filter(proprietaire=request.user).order_by('-date_telechargement')
+
     context = {
-        'ressources': ressources
+        'ressources': ressources,
+        'telechargements': telechargements,
     }
     return render(request, 'user/mes_ressources_partagees.html', context)
 
+
+
+
 @login_required
-def mes_ressources_telechargees(request):
-    telechargements = Telechargement.objects.filter(utilisateur=request.user)
-    tel = {
-        'telechargements': telechargements
-    }
-    return render(request, 'user/mes_ressources_partagees.html', tel)
+def supprimer_ressource(request,id):
+    ressource=get_object_or_404(Ressource,id=id)
+    if request.method== "POST":
+        ressource.delete()
+        return redirect('ressource:mes_ressources_partagees')
+    return render(request,'ressource/supprimer_ressource.html',{'ressource':ressource})

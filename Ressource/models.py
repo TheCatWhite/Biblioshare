@@ -22,12 +22,12 @@ class Ressource(models.Model):
 
 
 class Telechargement(models.Model):
-    utilisateur = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="telechargements")
+    proprietaire = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="telechargements")
     ressource = models.ForeignKey(Ressource, on_delete=models.CASCADE, related_name="telechargements")
     date_telechargement = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.utilisateur.username} a téléchargé {self.ressource.titre}"
+        return f"{self.proprietaire.username} a téléchargé {self.ressource.titre}"
 
 
 class Favori(models.Model):
