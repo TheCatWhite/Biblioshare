@@ -9,6 +9,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 from Ressource.models import Ressource
+from Ressource.models import Telechargement
 from django.utils.translation import gettext as _
 
 def inscription(request):
@@ -37,9 +38,18 @@ def connexion(request):
     return render(request, 'auth/connexion.html')
 
 
+
 @login_required
 def profil(request):
-    return render(request, 'user/profil.html')
+    ressources = Ressource.objects.filter(proprietaire=request.user).order_by('-date_ajout')
+    telechargements = Telechargement.objects.filter(proprietaire=request.user).order_by('-date_telechargement')
+
+    context = {
+        'ressources': ressources,
+        'telechargements': telechargements,
+    }
+    return render(request, 'user/profil.html', context)
+
 
 
 @login_required

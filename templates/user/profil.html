@@ -8,58 +8,52 @@
 
 <style>
 body { 
-  background-color: #f8f9fa; 
+    background-color: #f4f6f9;
 }
 .avatar {
-  width: 100px;
-  height: 100px;
-  font-size: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: #0d6efd;
-  color: white;
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: bold;
 }
-.card {
-  border-radius: 1rem;
-  border: none;
+.card-profile {
+    border-radius: 1rem;
+    border: none;
 }
-.card h3 {
-  font-weight: 600;
+.card-profile h3 {
+    font-weight: 700;
 }
-.btn-ressources {
-  display: inline-block;
-  background-color: #0d6efd; 
-  color: #fff; 
-  border: none;
-  padding: 0.9rem 1.6rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
+.btn-action {
+    transition: all 0.3s ease-in-out;
 }
-.btn-ressources:hover {
-  background-color: #084298;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.btn-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
-.language-btn {
-  min-width: 100px;
+.list-group-item {
+    border-radius: 1rem;
+    border: none;
+    transition: all 0.3s ease-in-out;
 }
-.action-btn {
-  transition: all 0.2s ease-in-out;
+.list-group-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
-.action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.badge-type {
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 </style>
 
 <main class="container py-5">
 
+  <!-- Notifications -->
   {% if messages %}
   {% for message in messages %}
     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -69,61 +63,92 @@ body {
   {% endfor %}
   {% endif %}
 
-  <!-- Card profil -->
-  <div class="card shadow-sm p-4 mb-5">
+  <!-- Carte profil -->
+  <div class="card card-profile shadow-sm p-4 mb-5">
     <div class="d-flex flex-column flex-md-row align-items-center">
-      <!-- Avatar -->
-      <div class="avatar me-4 mb-3 mb-md-0">
-        {{ user.username|first|upper }}
-      </div>
-      <!-- Infos utilisateur -->
-      <div class="flex-grow-1">
-        <h3>{{ user.username }}</h3>
-        <p class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>{{ user.email }}</p>
-        <p class="text-muted mb-0"><i class="fas fa-calendar-alt me-2"></i>{% trans "Membre depuis :" %} {{ user.date_joined|date:"d/m/Y" }}</p>
-      </div>
-      <!-- Choix de langue -->
-      <div class="d-flex mt-3 mt-md-0 ms-md-3">
-        <form action="{% url 'set_language' %}" method="post" class="me-2">
-          {% csrf_token %}
-          <input type="hidden" name="language" value="fr">
-          <input type="hidden" name="next" value="{{ request.path }}">
-          <button type="submit" class="btn btn-outline-primary btn-sm language-btn">🇫🇷 Français</button>
-        </form>
-        <form action="{% url 'set_language' %}" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="language" value="en">
-          <input type="hidden" name="next" value="{{ request.path }}">
-          <button type="submit" class="btn btn-outline-primary btn-sm language-btn">🇬🇧 English</button>
-        </form>
-      </div>
+        <div class="avatar me-4 mb-3 mb-md-0">{{ user.username|first|upper }}</div>
+        <div class="flex-grow-1">
+            <h3>{{ user.username }}</h3>
+            <p class="text-muted mb-1"><i class="fas fa-envelope me-2"></i>{{ user.email }}</p>
+            <p class="text-muted mb-0"><i class="fas fa-calendar-alt me-2"></i>{% trans "Membre depuis :" %} {{ user.date_joined|date:"d/m/Y" }}</p>
+        </div>
+        <div class="d-flex mt-3 mt-md-0 ms-md-3 gap-2">
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="language" value="fr">
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button type="submit" class="btn btn-outline-primary btn-sm">🇫🇷</button>
+            </form>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="language" value="en">
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button type="submit" class="btn btn-outline-primary btn-sm">🇬🇧</button>
+            </form>
+        </div>
     </div>
   </div>
 
   <!-- Actions principales -->
   <div class="row g-3 mb-5 text-center">
     <div class="col-md-4">
-      <a href="{% url 'ressource:upload_ressource' %}" class="btn btn-success w-100 py-3 action-btn">
-        <i class="fas fa-upload me-2"></i>{% trans "Uploader une ressource" %}
-      </a>
+        <a href="{% url 'ressource:upload_ressource' %}" class="btn btn-success w-100 py-3 btn-action">
+            <i class="fas fa-upload me-2"></i>{% trans "Uploader une ressource" %}
+        </a>
     </div>
     <div class="col-md-4">
-      <a href="{% url 'utilisateur:modifier_profil' %}" class="btn btn-primary w-100 py-3 action-btn">
-        <i class="fas fa-user-edit me-2"></i>{% trans "Modifier le profil" %}
-      </a>
+        <a href="{% url 'utilisateur:modifier_profil' %}" class="btn btn-primary w-100 py-3 btn-action">
+            <i class="fas fa-user-edit me-2"></i>{% trans "Modifier le profil" %}
+        </a>
     </div>
     <div class="col-md-4">
-      <a href="{% url 'utilisateur:modifier_mot_de_passe' %}" class="btn btn-outline-primary w-100 py-3 action-btn">
-        <i class="fas fa-key me-2"></i>{% trans "Changer le mot de passe" %}
-      </a>
+        <a href="{% url 'utilisateur:modifier_mot_de_passe' %}" class="btn btn-outline-primary w-100 py-3 btn-action">
+            <i class="fas fa-key me-2"></i>{% trans "Changer le mot de passe" %}
+        </a>
     </div>
   </div>
 
-  <!-- Voir ressources partagées -->
-  <div class="text-center">
-    <a href="{% url 'ressource:mes_ressources_partagees' %}" class="btn-ressources">
-      👀 {% trans "Voir mes ressources partagées" %}
-    </a>
+  <!-- Statistiques -->
+  <div class="row g-4 mb-5 text-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 border-0 rounded-4">
+            <h4 class="fw-bold text-primary">{{ ressources|length }}</h4>
+            <p class="text-muted mb-0"><i class="fas fa-book me-2"></i>{% trans "Ressources partagées" %}</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 border-0 rounded-4">
+            <h4 class="fw-bold text-success">{{ telechargements|length }}</h4>
+            <p class="text-muted mb-0"><i class="fas fa-download me-2"></i>{% trans "Téléchargements" %}</p>
+        </div>
+    </div>
+  </div>
+
+  <!-- Mes ressources partagées -->
+  <div class="container my-5">
+      <h2 class="mb-4 text-primary fw-bold">{% trans "Mes ressources partagées" %}</h2>
+
+      {% if ressources %}
+      <div class="list-group">
+          {% for r in ressources %}
+          <div class="list-group-item d-flex justify-content-between align-items-center shadow-sm mb-3 p-3 hover-shadow">
+              <div>
+                  <h5 class="mb-1 fw-semibold">{{ r.titre }}</h5>
+                  <small class="text-muted"><i class="fas fa-calendar-alt me-2"></i>{{ r.date_ajout|date:"d/m/Y H:i" }}</small>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-info text-dark badge-type">{{ r.type }}</span>
+                  <a href="{{ r.fichier.url }}" class="btn btn-sm btn-success rounded-pill"><i class="fas fa-download me-1"></i>{% trans "Télécharger" %}</a>
+                  <a href="{% url 'ressource:supprimer_ressource' r.id %}" class="btn btn-sm btn-danger rounded-pill"><i class="fas fa-trash me-1"></i>{% trans "Supprimer" %}</a>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+      {% else %}
+      <div class="alert alert-info shadow-sm rounded-4" role="alert">
+          {% trans "Vous n'avez encore partagé aucune ressource." %}
+      </div>
+      {% endif %}
   </div>
 
 </main>

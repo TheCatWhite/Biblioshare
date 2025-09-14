@@ -67,18 +67,6 @@ def accueil(request):
 
 
 
-@login_required
-def mes_ressources_partagees(request):
-    ressources = Ressource.objects.filter(proprietaire=request.user).order_by('-date_ajout')
-    telechargements = Telechargement.objects.filter(proprietaire=request.user).order_by('-date_telechargement')
-
-    context = {
-        'ressources': ressources,
-        'telechargements': telechargements,
-    }
-    return render(request, 'user/mes_ressources_partagees.html', context)
-
-
 
 
 @login_required
